@@ -48,13 +48,17 @@
             border-radius: 15px;
         }
         .dots {
-            position: absolute;
-            width: 100%;
+            position: fixed; /* или absolute, в зависимости от контекста */
             top: 20%;
+            left: 44%;
+            transform: translate(-50%, -50%); /* сдвигает элемент ровно на половину его ширины и высоты назад, центрируя его */
+            
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* выравнивает сами точки по центру контейнера */
+            gap: 10px; /* расстояние между точками (опционально) */
+            width: 100%; /* если нужно, чтобы блок занимал всю ширину */
         }
     </style>
 </head>
