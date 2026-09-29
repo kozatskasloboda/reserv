@@ -31,7 +31,7 @@
             align-items: flex-start; /* Прижимаем содержимое к левому краю */
             width: 100%;             /* Растягиваем контейнер на всю ширину */
             max-width: 320px;        /* Ограничиваем ширину, чтобы совпадало с клавиатурой */
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         h1 {
@@ -76,7 +76,7 @@
             max-width: 280px;
             margin: auto 0;
             padding-top: 24px 0;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             
         }
 
@@ -137,9 +137,21 @@
             height: 66px;
         }
 
+        .key-btn-palc:active {
+            -webkit-tap-highlight-color: transparent;
+            
+        }
+
+        .key-btn-palc1:active {
+            -webkit-tap-highlight-color: transparent;
+        }
+
         .key-btn:active {
             transform: scale(0.92);
-            background-color: #e5e0d3;
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .key-btn svg {
@@ -150,13 +162,14 @@
 
         /* Нижняя ссылка */
         .footer-link {
+            display: flex;
+            flex-direction: row;
             font-size: 16px;
             font-weight: 500;
             color: #262626;
             text-decoration: none;
-            margin-bottom: 10px;
-            justify-content: space-between;
-            width: 200px;
+            -webkit-tap-highlight-color: transparent;
+            
         }
 
         .footer-link:hover {
@@ -181,6 +194,9 @@
             width: 60px;
             height: 60px;
         }
+        .container {
+            height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -195,7 +211,9 @@
             <div id="dot-2" class="dot"></div>
             <div id="dot-3" class="dot"></div>
         </div>
-
+    <div class="keyfor">
+        
+    </div>
     <!-- Цифровая клавиатура -->
     <div class="keypad">
         <button onclick="pressKey('1')" class="key-btn">1</button>
@@ -220,13 +238,16 @@
             <img src="crest1.jpg" alt="">
         </button>
     </div>
-
-    <!-- Нижний текст -->
     <div>
         <a href="#forgot" onclick="forgotPassword(event)" class="footer-link">
             Не пам'ятаю код для входу
         </a>
     </div>
+    <div class="container">
+
+    </div>
+
+    <!-- Нижний текст -->
 
     <!-- Уведомление -->
     <div id="toast">Успішний вхід!</div>
