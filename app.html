@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reserv</title>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e1decb;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #d5d3be;
+            width: 60%;
+            justify-content: center;
+            height: 420px;
+            border-radius: 5px ;
+            
+        }
+        .rezid {
+            font-size: 18px;
+            padding-top: 5px;
+        }
+        .rezidim {
+            width: 35px;
+            height: 40px;
+            padding-top: 15px;
+        }
+        .implus {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: 115px;
+            bottom: 160px;
+            
+        }
+        .begstroke {
+            background-color: #6d4a1a;
+            color: #ffedd5;
+            height: 20px;
+            font-size: 8px;
+        }
+        .rezd {
+            display: flex;
+            flex-direction: row;
+            justify-content:space-between;
+            margin-left: 15px;
+            margin-right: 10px;
+        }
+        .inf {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .fio1 {
+            display: flex;
+            flex-direction: column;
+            height: 50px;
+            font-size: 9px;
+
+        }
+        .fio1 h2 {
+            margin-top: 1px;
+            margin-bottom: 1px;
+            color: #545140;
+        }
+        .fio1 h1 {
+            font-size: 15px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        .fio {
+            display: flex;
+            flex-direction: row;
+            height: 100px;
+            font-size: 9px;
+            margin-top: 20px;
+            margin-left: 3px;
+            justify-content: space-between;
+            margin-right: 10px;
+        }
+        .photo {
+            width: 125px;
+            height: 170px;
+            margin-left: -30px;
+            border-radius: 5px;
+            margin-right: 10px;
+            left: 1%;
+        }
+        .cont1 {
+            height: 150px;
+            
+        }
+        .information {
+            height: 270px;
+        }
+        .name {
+            margin-top: -2px;
+            margin-bottom: -2px;
+            margin-left: 10px;
+        }
+        .fio2 .h3 {
+            margin-left: 10px;
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: #545140 ;
+            font-weight: 500;
+        }
+        .begstroke h2 {
+            margin-left: 10px;
+            padding-top: 2px;
+        }
+        .spov {
+            background-color: white;
+            width: 120px;
+            height: 27px;
+            text-align: center;
+            border-radius: 15px;
+            font-size: 8px;
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            top: 80px;
+            right: 110px;
+        }
+        .din {
+            width: 17px;
+            height: 20px;
+            position: absolute;
+            right: 10px;
+            top: 2px;
+            
+        }
+        .spov h2 {
+            position: absolute;
+            top: -5px;
+            right: 30px;
+        }
+        .nav {
+            display: flex;
+            flex-direction: row;
+            height: 50px;
+            width: 60%;
+            background-color: white;
+            border-radius: 25px;
+            align-items: center;
+        }
+        .pyst {
+            height: 50px;
+        }
+        .slot {
+            font-size: 12px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cont1">
+
+        <div class="spov"><h2>Сповіщення</h2>
+        <img class="din" src="din.jpg" alt="">
+    </div>
+    </div>
+
+    <div class="container">
+        <div class="information">
+            <div class="rezd">
+
+                <h1 class="rezid">Резерв ID</h1>
+                <img class="rezidim" src="rezidim.jpg" alt="">
+            </div>
+            <div class="inf">
+
+                <img class="photo" src="rezphoto.jpg" alt="">
+                <div class="fio1">
+
+                    <h2>Дата</h2>
+                    <h2>народження:</h2>
+                    <h1>02.05.1982</h1>
+                    <h2>Відстрочка до:</h2>
+                    <h1>03.02.2027</h1>
+                </div>
+            </div>
+        </div>
+        <div class="begstroke">
+            <h2>Документ оновлено о 07:00 | 02.09.2026</h2>
+        </div>
+        <div class="fio">
+            <div class="fio2">
+
+                <div class="h3">Військовозобов'язаний</div>
+                <h1 class="name">ШЕЛЕСТ</h1>
+                <h1 class="name">ОЛЕКСАНДР</h1>
+                <h1 class="name">Миколайович</h1>
+            </div>
+            <img class="implus"  src="plus.jpg" alt="">
+        </div>
+    </div>
+    <div class="pyst"></div>
+    <div class="nav">
+        <div class="slot">Резерв ID</div>
+        <div class="slot">Сервіси</div>
+        <div class="slot">Вакансії</div>
+        <div class="slot">Меню</div>
+    </div>
+</body>
+</html>
