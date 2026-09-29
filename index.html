@@ -25,21 +25,22 @@
             padding: 32px 16px;
         }
 
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Прижимаем содержимое к левому краю */
+            width: 100%;             /* Растягиваем контейнер на всю ширину */
+            max-width: 320px;        /* Ограничиваем ширину, чтобы совпадало с клавиатурой */
+            margin-top: 16px;
+        }
+
         h1 {
             font-size: 28px;
             font-weight: 600;
             color: #171717;
             margin-bottom: 32px;
             letter-spacing: -0.5px;
-            left: 10%;
-            
-        }
-
-        .header-container {
-            display: flex;
-            flex-direction: column;
-            
-            margin-top: 16px;
+            text-align: left;        /* Текст внутри тоже выравниваем по левому краю */
         }
 
         /* Точки-индикаторы */
@@ -48,14 +49,14 @@
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             height: 24px;
             top: 20%;
         }
 
         .dot {
-            width: 14px;
-            height: 14px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background-color: #ffffff;
             transition: background-color 0.3s ease;
@@ -111,6 +112,28 @@
             cursor: pointer;
             transition: transform 0.1s ease, background-color 0.2s ease;
         }
+        .key-btn-palc1 {
+            width: 66px;
+            height: 66px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background-color: #e1decb;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 500;
+            color: #171717;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease;
+        }
+
+        .key-btn-palc1 img {
+            width: 66px;
+            height: 66px;
+        }
 
         .key-btn:active {
             transform: scale(0.92);
@@ -129,7 +152,7 @@
             font-weight: 500;
             color: #262626;
             text-decoration: none;
-            margin-bottom: 8px;
+            margin-top: 8px;
         }
 
         .footer-link:hover {
@@ -161,13 +184,13 @@
     <!-- Верхняя часть: Заголовок и точки -->
     <div class="header-container">
         <h1>Код для входу</h1>
+    </div>
         <div class="dots">
             <div id="dot-0" class="dot"></div>
             <div id="dot-1" class="dot"></div>
             <div id="dot-2" class="dot"></div>
             <div id="dot-3" class="dot"></div>
         </div>
-    </div>
 
     <!-- Цифровая клавиатура -->
     <div class="keypad">
@@ -189,10 +212,8 @@
         <button onclick="pressKey('0')" class="key-btn">0</button>
 
         <!-- Кнопка удаления (крестик) -->
-        <button onclick="deleteKey()" class="key-btn" title="Видалити">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px;">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
+        <button onclick="deleteKey()" class="key-btn-palc1" title="Видалити">
+            <img src="crest1.jpg" alt="">
         </button>
     </div>
 
