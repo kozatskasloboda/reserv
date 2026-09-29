@@ -148,7 +148,7 @@
             display: flex;
             flex-direction: row;
             height: 50px;
-            width: 90%;
+            width: 105%;
             background-color: white;
             border-radius: 25px;
             align-items: center;
@@ -159,6 +159,39 @@
         .slot {
             margin-top: 1px;
             width: 100%;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: #6b4c27; /* Ваш коричневый фон */
+            padding: 0px 0;
+            box-sizing: border-box;
+            height: 20px;
+        }
+
+        .marquee-track {
+            display: inline-block;
+            white-space: nowrap;
+            /* Увеличили время до 20 секунд для мягкого хода, можете настроить под себя */
+            animation: marquee 20s linear infinite; 
+            will-change: transform;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8px;
+            font-weight: 500;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                /* Сдвигаем ровно на 50%. Так как строка состоит из двух одинаковых частей, 
+                момент прыжка обратно в 0% будет абсолютно незаметен. */
+                transform: translate3d(-50%, 0, 0);
+            }
         }
     </style>
 </head>
@@ -190,8 +223,10 @@
                 </div>
             </div>
         </div>
-        <div class="begstroke">
-            <h2>Документ оновлено о 07:00 | 02.09.2026</h2>
+        <div class="marquee-container">
+            <div class="marquee-track" id="marquee-track">
+                <!-- Текст сюда будет подставляться автоматически -->
+            </div>
         </div>
         <div class="fio">
             <div class="fio2">
@@ -212,5 +247,31 @@
         <div class="slot">Меню</div>-->
         <img class="slot" src="slot.jpg" alt="">
     </div>
+    <script>
+        function initMarquee() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+
+            // Текст сообщения
+            const text = `Документ оновлено о ${hours}:${minutes} | ${day}.${month}.${year}`;
+            
+            // Делаем длинную повторяющуюся строку с запасом, чтобы она гарантированно заполняла экран 
+            // и дублировалась для бесшовности (точка-разделитель посередине)
+            const repeatedPart = `${text} &nbsp;&nbsp;&bull;&nbsp;&nbsp; `;
+            const fullHTML = repeatedPart.repeat(6); // Повторяем несколько раз, чтобы строка была длинной
+
+            const trackElement = document.getElementById('marquee-track');
+            if (trackElement) {
+                trackElement.innerHTML = fullHTML;
+            }
+        }
+
+        // Запускаем при загрузке страницы
+        initMarquee();
+    </script>
 </body>
 </html>
