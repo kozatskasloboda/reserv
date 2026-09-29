@@ -1,78 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="first.jpg">
-    <title>rezerv</title>
+    <title>Код для входу</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         body {
-            background-color: #cfd993;
-            align-items: center;
-            
-            width: 100%;
+            font-family: 'Inter', sans-serif;
+            background-color: #f3efe6; /* Светлый кремово-бежевый фон как на скриншоте */
         }
-        .inputstroke1 {
-            display: none;
+        /* Эффект нажатия на круглые кнопки */
+        .key-btn {
+            transition: transform 0.1s ease, background-color 0.2s ease;
         }
-        .dot1 {
-            background-color: white;
-            width: 10px;
-            height: 10px;
-            
-            position: absolute;
-            border-radius: 15px;
-            }
-        .dot2 {
-            background-color: white;
-            width: 10px;
-            height: 10px;
-            margin-left: 40px;
-            position: absolute;
-            border-radius: 15px;
-            }
-        .dot3 {
-            background-color: white;
-            width: 10px;
-            height: 10px;
-            margin-left: 80px;
-            position: absolute;
-            border-radius: 15px;
-            }
-        .dot4 {
-            background-color: white;
-            width: 10px;
-            height: 10px;
-            margin-left: 120px;
-            
-            border-radius: 15px;
-        }
-        .dots {
-            position: fixed; /* или absolute, в зависимости от контекста */
-            top: 20%;
-            left: 44%;
-            transform: translate(-50%, -50%); /* сдвигает элемент ровно на половину его ширины и высоты назад, центрируя его */
-            
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center; /* выравнивает сами точки по центру контейнера */
-            gap: 10px; /* расстояние между точками (опционально) */
-            width: 100%; /* если нужно, чтобы блок занимал всю ширину */
+        .key-btn:active {
+            transform: scale(0.92);
+            background-color: #e5e0d3;
         }
     </style>
 </head>
-<body>
-    <H1>Код для входу</H1>
-    <div class="inputstroke">
-        <input type="number" class="inputstroke1" id="number-input" placeholder=" . . . .">
+<body class="min-h-screen flex flex-col justify-between items-center py-8 px-4 select-none">
 
-        <div class="dots">
-            <div class="dot1"></div>
-            <div class="dot2"></div>
-            <div class="dot3"></div>
-            <div class="dot4"></div>
+    <!-- Верхняя часть: Заголовок и точки -->
+    <div class="w-full max-w-xs flex flex-col items-center mt-4">
+        <h1 class="text-3xl font-semibold text-neutral-900 tracking-tight mb-8">Код для входу</h1>
+        
+        <!-- Точки-индикаторы пин-кода -->
+        <div class="dots flex flex-row items-center justify-center gap-4 h-6">
+            <div id="dot-0" class="w-3.5 h-3.5 rounded-full bg-white transition-all duration-300"></div>
+            <div id="dot-1" class="w-3.5 h-3.5 rounded-full bg-white transition-all duration-300"></div>
+            <div id="dot-2" class="w-3.5 h-3.5 rounded-full bg-white transition-all duration-300"></div>
+            <div id="dot-3" class="w-3.5 h-3.5 rounded-full bg-white transition-all duration-300"></div>
         </div>
     </div>
+
+    <!-- Цифровая клавиатура (от 1 до 9, 0, сканер и кнопка удаления) -->
+    <div class="w-full max-w-xs grid grid-cols-3 gap-y-6 gap-x-6 my-auto py-6">
+        <!-- 1 -->
+        <button onclick="pressKey('1')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">1</button>
+        <!-- 2 -->
+        <button onclick="pressKey('2')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">2</button>
+        <!-- 3 -->
+        <button onclick="pressKey('3')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">3</button>
+        
+        <!-- 4 -->
+        <button onclick="pressKey('4')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">4</button>
+        <!-- 5 -->
+        <button onclick="pressKey('5')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">5</button>
+        <!-- 6 -->
+        <button onclick="pressKey('6')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">6</button>
+        
+        <!-- 7 -->
+        <button onclick="pressKey('7')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">7</button>
+        <!-- 8 -->
+        <button onclick="pressKey('8')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">8</button>
+        <!-- 9 -->
+        <button onclick="pressKey('9')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">9</button>
+        
+        <!-- Кнопка отпечатка пальца -->
+        <button onclick="handleBiometric()" class="key-btn w-20 h-20 mx-auto rounded-full flex items-center justify-center text-neutral-700 hover:text-neutral-900 transition-colors focus:outline-none" title="Сканер відбитку">
+            <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.115 6.8a13.565 13.565 0 01-1.682고.2m-6 -10.8a6.002 6.002 0 0111.971-1.75M12 3a9 9 0 019 9c0 1.5-.375 2.91-1.037 4.15"></path>
+            </svg>
+        </button>
+
+        <!-- 0 -->
+        <button onclick="pressKey('0')" class="key-btn w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center text-2xl font-medium text-neutral-900 shadow-sm">0</button>
+
+        <!-- Кнопка удаления (крестик) -->
+        <button onclick="deleteKey()" class="key-btn w-20 h-20 mx-auto rounded-full flex items-center justify-center text-neutral-800 hover:text-neutral-900 transition-colors focus:outline-none" title="Видалити">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Нижний текст -->
+    <div class="w-full text-center mb-2">
+        <a href="#forgot" onclick="forgotPassword(event)" class="text-sm font-medium text-neutral-800 hover:underline">
+            Не пам'ятаю код для входу
+        </a>
+    </div>
+
+    <!-- Уведомление-тост (скрыто по умолчанию) -->
+    <div id="toast" class="fixed bottom-16 bg-neutral-900 text-white px-5 py-2.5 rounded-xl text-sm shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
+        Успішний вхід!
+    </div>
+
+    <script>
+        // Переменная для хранения введенного пин-кода
+        let currentPin = '';
+        const correctPin = '1234'; // Демо-пин-код для проверки
+
+        // Функция нажатия на цифровую клавишу
+        function pressKey(digit) {
+            if (currentPin.length < 4) {
+                currentPin += digit;
+                updateDots();
+
+                // Если введено 4 цифры, проверяем пин-код
+                if (currentPin.length === 4) {
+                    setTimeout(verifyPin, 150);
+                }
+            }
+        }
+
+        // Функция удаления последней цифры
+        function deleteKey() {
+            if (currentPin.length > 0) {
+                currentPin = currentPin.slice(0, -1);
+                updateDots();
+            }
+        }
+
+        // Обновление внешнего вида точек-индикаторов
+        function updateDots() {
+            for (let i = 0; i < 4; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (i < currentPin.length) {
+                    dot.classList.remove('bg-white');
+                    dot.classList.add('bg-neutral-800'); // Точка становится темной/заполненной
+                } else {
+                    dot.classList.remove('bg-neutral-800');
+                    dot.classList.add('bg-white'); // Пустая белая точка
+                }
+            }
+        }
+
+        // Проверка пин-кода
+        function verifyPin() {
+            if (currentPin === correctPin) {
+                showToast('Вхід успішно виконано!');
+            } else {
+                showToast('Невірний код (спробуйте 1234)');
+                // Анимация сброса
+                setTimeout(() => {
+                    currentPin = '';
+                    updateDots();
+                }, 400);
+            }
+        }
+
+        // Обработка клика по сканеру отпечатка
+        function handleBiometric() {
+            showToast('Сканування відбитку пальця...');
+            setTimeout(() => {
+                showToast('Біометричний вхід успішний!');
+            }, 1000);
+        }
+
+        // Обработка клика по "Не пам'ятаю код"
+        function forgotPassword(e) {
+            e.preventDefault();
+            showToast('Відновлення доступу...');
+        }
+
+        // Показ всплывающего уведомления
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+            }, 2500);
+        }
+    </script>
 </body>
 </html>
