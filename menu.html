@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vakancy</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #e1decb;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background-color: #f2efe9; /* Подберите под цвет фона вашего сайта */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: env(safe-area-inset-bottom);
+            box-sizing: border-box;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Элемент меню */
+        .bottom-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #262626; /* Цвет по умолчанию (неактивный) */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            width: 25%;
+        }
+
+        .bottom-nav .nav-icon {
+            width: 26px;
+            height: 26px;
+            margin-bottom: 4px;
+        }
+
+        .bottom-nav .nav-text {
+            line-height: 1.2;
+        }
+
+        /* ЛОГИКА СОСТОЯНИЙ ИКОНОК */
+
+        /* По умолчанию (неактивное): сплошная заливка и внутренний ромб скрыты */
+        .bottom-nav .nav-item .solid-element {
+            display: none;
+        }
+
+        /* Активное состояние кнопки */
+        .bottom-nav .nav-item.active {
+            color: #262626; /* Цвет текста подписи */
+        }
+
+        /* Когда кнопка активна — меняем цвета внутри SVG */
+        .bottom-nav .nav-item.active .outline-element {
+            display: none; /* Убираем контур */
+        }
+
+        .bottom-nav .nav-item.active .solid-element {
+            display: block; /* Показываем черную закрашенную подложку */
+            color: #262626;
+        }
+
+        /* Внутренние полоски и элементы становятся белыми на черном фоне */
+        .bottom-nav .nav-item.active line {
+            stroke: #ffffff !important;
+        }
+
+        /* Для Вакансий ромб внутри черного квадрата становится белым */
+        .bottom-nav .nav-item.active .diamond {
+            fill: #ffffff !important;
+        }
+
+        /* Для Сервисов квадратики становятся сплошными черными */
+        .bottom-nav .nav-item.active [class*="box-"] {
+            fill: #262626;
+        }
+        .container img {
+            width: 100%;
+            height: 650px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pyst"></div>
+    <div class="container">
+        <img src="men.jpg" alt="">
+    </div>
+    <nav class="bottom-nav">
+    <!-- Кнопка 1: Резерв ID -->
+        <a href="app.html" class="nav-item" data-tab="reserve">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
+                <!-- Внешний контур документа -->
+                <rect class="outline-element" x="5" y="3" width="14" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                <rect class="solid-element" x="5" y="3" width="14" height="18" rx="1" fill="currentColor"/>
+                <!-- Линии внутри -->
+                <line class="line-element" x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line class="line-element" x1="5" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="nav-text">Резерв ID</span>
+        </a>
+
+        <!-- Кнопка 2: Сервіси -->
+        <a href="serv.html" class="nav-item" data-tab="services">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
+                <!-- 4 квадратика -->
+                <rect class="box-1" x="4" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-2" x="13" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-3" x="4" y="13" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-4" x="13" y="13" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <span class="nav-text">Сервіси</span>
+        </a>
+
+        <!-- Кнопка 3: Вакансії -->
+        <a href="vak.html" class="nav-item" data-tab="vacancies">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
+                <rect class="outline-element" x="5" y="3" width="14" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="solid-element" x="5" y="3" width="14" height="18" rx="2" fill="currentColor"/>
+                <rect class="diamond" x="10" y="9" width="6" height="6" transform="rotate(45 12 11)" fill="currentColor"/>
+            </svg>
+            <span class="nav-text">Вакансії</span>
+        </a>
+
+        <!-- Кнопка 4: Меню -->
+        <a href="menu.html" class="nav-item active" data-tab="menu">
+            <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
+                <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="nav-text">Меню</span>
+        </a>
+    </nav>
+</body>
+</html>
