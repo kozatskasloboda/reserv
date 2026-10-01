@@ -393,23 +393,21 @@
                 trackElement.innerHTML = fullHTML;
             }
         }
-        window.onload = function() {
-            var items = document.getElementsByClassName('nav-item');
+        document.addEventListener("DOMContentLoaded", () => {
+    // Получаем только имя файла из адресной строки (например, "serv.html")
+            const fileName = window.location.pathname.split("/").pop() || "index.html";
             
-            for (var i = 0; i < items.length; i++) {
-                items[i].onclick = function(e) {
-                    e.preventDefault(); // Отменяем прыжок страницы
-                    
-                    // Убираем класс active у всех
-                    for (var j = 0; j < items.length; j++) {
-                        items[j].classList.remove('active');
-                    }
-                    
-                    // Добавляем класс active на то, куда нажали
-                    this.classList.add('active');
-                };
-            }
-        };
+            document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
+                const href = item.getAttribute('href');
+                
+                item.classList.remove('active');
+                
+                // Если имя файла в ссылке совпадает с текущим файлом — делаем активным
+                if (href === fileName) {
+                    item.classList.add('active');
+                }
+            });
+        });
 
         // Запускаем при загрузке страницы
         initMarquee();
