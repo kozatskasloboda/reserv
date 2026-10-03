@@ -7,6 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>reserv</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Название">
+    <link rel="apple-touch-icon" href="icon-180.png">
 
     <style>
         body {
@@ -165,7 +170,7 @@
             width: 100%;
             overflow: hidden;
             white-space: nowrap;
-            background-color: #6b4c27; /* Ваш коричневый фон */
+            background-color: #6b4c27;
             padding: 0px 0;
             box-sizing: border-box;
             height: 20px;
@@ -174,7 +179,6 @@
         .marquee-track {
             display: inline-block;
             white-space: nowrap;
-            /* Увеличили время до 20 секунд для мягкого хода, можете настроить под себя */
             animation: marquee 20s linear infinite; 
             will-change: transform;
             color: #ffffff;
@@ -188,8 +192,6 @@
                 transform: translate3d(0, 0, 0);
             }
             100% {
-                /* Сдвигаем ровно на 50%. Так как строка состоит из двух одинаковых частей, 
-                момент прыжка обратно в 0% будет абсолютно незаметен. */
                 transform: translate3d(-50%, 0, 0);
             }
         }
@@ -199,7 +201,7 @@
             left: 0;
             width: 100%;
             height: 75px;
-            background-color: #f2efe9; /* Подберите под цвет фона вашего сайта */
+            background-color: #f2efe9; 
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -209,14 +211,12 @@
             z-index: 1000;
             -webkit-tap-highlight-color: transparent;
         }
-
-        /* Элемент меню */
         .bottom-nav .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-decoration: none;
-            color: #262626; /* Цвет по умолчанию (неактивный) */
+            color: #262626; 
             font-family: 'Montserrat', sans-serif;
             font-size: 12px;
             font-weight: 500;
@@ -224,50 +224,33 @@
             outline: none;
             width: 25%;
         }
-
         .bottom-nav .nav-icon {
             width: 26px;
             height: 26px;
             margin-bottom: 4px;
         }
-
         .bottom-nav .nav-text {
             line-height: 1.2;
         }
-
-        /* ЛОГИКА СОСТОЯНИЙ ИКОНОК */
-
-        /* По умолчанию (неактивное): сплошная заливка и внутренний ромб скрыты */
         .bottom-nav .nav-item .solid-element {
             display: none;
         }
-
-        /* Активное состояние кнопки */
         .bottom-nav .nav-item.active {
-            color: #262626; /* Цвет текста подписи */
-        }
-
-        /* Когда кнопка активна — меняем цвета внутри SVG */
-        .bottom-nav .nav-item.active .outline-element {
-            display: none; /* Убираем контур */
-        }
-
-        .bottom-nav .nav-item.active .solid-element {
-            display: block; /* Показываем черную закрашенную подложку */
             color: #262626;
         }
-
-        /* Внутренние полоски и элементы становятся белыми на черном фоне */
-        .bottom-nav .nav-item.active line {
-            stroke: #ffffff !important;
+        .bottom-nav .nav-item.active .outline-element {
+            display: none;
         }
-
-        /* Для Вакансий ромб внутри черного квадрата становится белым */
+        .bottom-nav .nav-item.active .solid-element {
+            display: block; 
+            color: #262626;
+        }
+        .bottom-nav .nav-item.active line {
+            stroke: #fffefe !important;
+        }
         .bottom-nav .nav-item.active .diamond {
             fill: #ffffff !important;
         }
-
-        /* Для Сервисов квадратики становятся сплошными черными */
         .bottom-nav .nav-item.active [class*="box-"] {
             fill: #262626;
         }
@@ -290,59 +273,45 @@
             </div>
             <div class="inf">
 
-                <img class="photo" src="rezphoto.jpg" alt="">
+                <img class="photo" src="photo2.jpg" alt="">
                 <div class="fio1">
 
                     <h2>Дата</h2>
                     <h2>народження:</h2>
-                    <h1>02.05.1982</h1>
+                    <h1>10.02.1973</h1>
                     <h2>Відстрочка до:</h2>
-                    <h1>03.02.2027</h1>
+                    <h1>03.05.2027</h1>
                 </div>
             </div>
         </div>
         <div class="marquee-container">
             <div class="marquee-track" id="marquee-track">
-                <!-- Текст сюда будет подставляться автоматически -->
             </div>
         </div>
         <div class="fio">
             <div class="fio2">
 
                 <div class="h3">Військовозобов'язаний</div>
-                <h1 class="name">ШЕЛЕСТ</h1>
-                <h1 class="name">ОЛЕКСАНДР</h1>
-                <h1 class="name">Миколайович</h1>
+                <h1 class="name">СІРИЙ</h1>
+                <h1 class="name">ОЛЕГ</h1>
+                <h1 class="name">Анатолійович</h1>
             </div>
             <img class="implus"  src="plus.jpg" alt="">
         </div>
     </div>
     <div class="pyst"></div>
-    <!--<div class="nav">
-        !-<-<div class="slot">Резерв ID</div>
-        <div class="slot">Сервіси</div>
-        <div class="slot">Вакансії</div>
-        <div class="slot">Меню</div>-->
-        <!--<img class="slot" src="slot.jpg" alt="">
-    </div>-->
     <nav class="bottom-nav">
-    <!-- Кнопка 1: Резерв ID -->
         <a href="app.html" class="nav-item" data-tab="reserve">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
-                <!-- Внешний контур документа -->
                 <rect class="outline-element" x="5" y="3" width="14" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
                 <rect class="solid-element" x="5" y="3" width="14" height="18" rx="1" fill="currentColor"/>
-                <!-- Линии внутри -->
                 <line class="line-element" x1="7" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 <line class="line-element" x1="7" y1="16" x2="17" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
             <span class="nav-text">Резерв ID</span>
         </a>
-
-        <!-- Кнопка 2: Сервіси -->
         <a href="serv.html" class="nav-item active" data-tab="services">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
-                <!-- 4 квадратика -->
                 <rect class="box-1" x="4" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
                 <rect class="box-2" x="13" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
                 <rect class="box-3" x="4" y="13" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -350,8 +319,6 @@
             </svg>
             <span class="nav-text">Сервіси</span>
         </a>
-
-        <!-- Кнопка 3: Вакансії -->
         <a href="vak.html" class="nav-item" data-tab="vacancies">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
                 <rect class="outline-element" x="5" y="3" width="14" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -360,8 +327,6 @@
             </svg>
             <span class="nav-text">Вакансії</span>
         </a>
-
-        <!-- Кнопка 4: Меню -->
         <a href="#" class="nav-item" data-tab="menu">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
                 <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -380,13 +345,10 @@
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const year = now.getFullYear();
 
-            // Текст сообщения
             const text = `Документ оновлено о ${hours}:${minutes} | ${day}.${month}.${year}`;
             
-            // Делаем длинную повторяющуюся строку с запасом, чтобы она гарантированно заполняла экран 
-            // и дублировалась для бесшовности (точка-разделитель посередине)
             const repeatedPart = `${text} &nbsp;&nbsp;&bull;&nbsp;&nbsp; `;
-            const fullHTML = repeatedPart.repeat(6); // Повторяем несколько раз, чтобы строка была длинной
+            const fullHTML = repeatedPart.repeat(6);
 
             const trackElement = document.getElementById('marquee-track');
             if (trackElement) {
@@ -394,7 +356,6 @@
             }
         }
         document.addEventListener("DOMContentLoaded", () => {
-    // Получаем только имя файла из адресной строки (например, "serv.html")
             const fileName = window.location.pathname.split("/").pop() || "index.html";
             
             document.querySelectorAll('.bottom-nav .nav-item').forEach(item => {
@@ -402,14 +363,11 @@
                 
                 item.classList.remove('active');
                 
-                // Если имя файла в ссылке совпадает с текущим файлом — делаем активным
                 if (href === fileName) {
                     item.classList.add('active');
                 }
             });
         });
-
-        // Запускаем при загрузке страницы
         initMarquee();
     </script>
 </body>
