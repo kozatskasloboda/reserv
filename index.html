@@ -7,6 +7,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"> 
     <title>Код для входу</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Название">
+    <link rel="apple-touch-icon" href="icon-180.png">
+    <link rel="icon" href="icon.jpg" type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
         
@@ -32,10 +38,9 @@
         .header-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Прижимаем содержимое к левому краю */
-            width: 100%;             /* Растягиваем контейнер на всю ширину */
-            max-width: 320px;        /* Ограничиваем ширину, чтобы совпадало с клавиатурой */
-            margin-top: 40px;
+            align-items: flex-start; 
+            width: 100%;             
+            max-width: 320px;        
         }
 
         h1 {
@@ -46,10 +51,8 @@
             margin-bottom: 120px;
             margin-top: -10px;
             letter-spacing: -0.5px;
-            text-align: left;        /* Текст внутри тоже выравниваем по левому краю */
+            text-align: left;        
         }
-
-        /* Точки-индикаторы */
         .dots {
             display: flex;
             flex-direction: row;
@@ -71,8 +74,6 @@
         .dot.active {
             background-color: #262626;
         }
-
-        /* Цифровая клавиатура */
         .keypad {
             font-family: 'Montserrat', sans-serif;
             display: grid;
@@ -85,7 +86,6 @@
             margin-bottom: 30px;
             
         }
-
         .key-btn {
             font-family: 'Montserrat', sans-serif;
             width: 70px;
@@ -138,21 +138,17 @@
             cursor: pointer;
             transition: transform 0.1s ease, background-color 0.2s ease;
         }
-
         .key-btn-palc1 img {
             width: 66px;
             height: 66px;
         }
-
         .key-btn-palc:active {
             -webkit-tap-highlight-color: transparent;
             
         }
-
         .key-btn-palc1:active {
             -webkit-tap-highlight-color: transparent;
         }
-
         .key-btn:active {
             transform: scale(0.92);
             background-color: #000000;
@@ -160,14 +156,11 @@
             text-decoration: none;
             -webkit-tap-highlight-color: transparent;
         }
-
         .key-btn svg {
             width: 32px;
             height: 32px;
             stroke: #404040;
         }
-
-        /* Нижняя ссылка */
         .footer-link {
             display: flex;
             flex-direction: row;
@@ -178,12 +171,9 @@
             -webkit-tap-highlight-color: transparent;
             
         }
-
         .footer-link:hover {
             text-decoration: underline;
         }
-
-        /* Уведомление (Тост) */
         #toast {
             position: fixed;
             bottom: 64px;
@@ -207,8 +197,6 @@
     </style>
 </head>
 <body>
-
-    <!-- Верхняя часть: Заголовок и точки -->
     <div class="header-container">
         <h1>Код для входу</h1>
     </div>
@@ -221,7 +209,6 @@
     <div class="keyfor">
         
     </div>
-    <!-- Цифровая клавиатура -->
     <div class="keypad">
         <button onclick="pressKey('1')" class="key-btn">1</button>
         <button onclick="pressKey('2')" class="key-btn">2</button>
@@ -233,14 +220,12 @@
         <button onclick="pressKey('8')" class="key-btn">8</button>
         <button onclick="pressKey('9')" class="key-btn">9</button>
         
-        <!-- Кнопка отпечатка пальца -->
         <button onclick="handleBiometric()" class="key-btn-palc" title="Сканер відбитку">
             <img src="palc.jpg" alt="">
         </button>
 
         <button onclick="pressKey('0')" class="key-btn">0</button>
 
-        <!-- Кнопка удаления (крестик) -->
         <button onclick="deleteKey()" class="key-btn-palc1" title="Видалити">
             <img src="crest1.jpg" alt="">
         </button>
@@ -253,15 +238,11 @@
     <div class="container">
 
     </div>
-
-    <!-- Нижний текст -->
-
-    <!-- Уведомление -->
     <div id="toast">Успішний вхід!</div>
 
     <script>
         let currentPin = '';
-        const correctPin = '1234';
+        const correctPin = '1973';
 
         function pressKey(digit) {
             if (currentPin.length < 4) {
