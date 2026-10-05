@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vakancy</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Название">
+    <link rel="apple-touch-icon" href="icon-180.png">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
@@ -14,135 +19,129 @@
         }
         .bottom-nav {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 75px;
-            background-color: #f2efe9; /* Подберите под цвет фона вашего сайта */
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%); /* Центрирует всю панель ровно посередине экрана */
+            width: 92%;
+            max-width: 400px; /* Ограничивает ширину панели, чтобы она выглядела аккуратно на любых экранах */
+            height: 60px;
+            border-radius: 50px;
+            background-color: #f7f7eb; 
             display: flex;
             justify-content: space-around;
             align-items: center;
-            padding-bottom: env(safe-area-inset-bottom);
+            padding: 0 5px; /* Небольшие отступы по краям панели */
             box-sizing: border-box;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Легкая тень для объема */
             z-index: 1000;
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Элемент меню */
         .bottom-nav .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-decoration: none;
-            color: #262626; /* Цвет по умолчанию (неактивный) */
+            color: #262626; 
             font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
             -webkit-tap-highlight-color: transparent;
             outline: none;
-            width: 25%;
+            width: auto; /* Равномерно делит ширину на 4 кнопки */
+            height: 47px; /* Делает кнопку компактной под овальную плашку */
+            border-radius: 30px; /* Округлая подсветка активного пункта */
+            transition: background-color 0.2s ease;
+            padding: 3px 0px;
+            flex: 1;
         }
 
         .bottom-nav .nav-icon {
-            width: 26px;
-            height: 26px;
-            margin-bottom: 4px;
+            width: 22px;
+            height: 22px;
+            margin-bottom: 3px;
         }
 
         .bottom-nav .nav-text {
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        /* ЛОГИКА СОСТОЯНИЙ ИКОНОК */
-
-        /* По умолчанию (неактивное): сплошная заливка и внутренний ромб скрыты */
         .bottom-nav .nav-item .solid-element {
             display: none;
         }
 
-        /* Активное состояние кнопки */
+        /* Состояние активной кнопки (овальная подсветка) */
         .bottom-nav .nav-item.active {
-            color: #262626; /* Цвет текста подписи */
+            color: #262626;
+            background-color: #e5e1cf; /* Цвет подсветки активного элемента */
         }
 
-        /* Когда кнопка активна — меняем цвета внутри SVG */
         .bottom-nav .nav-item.active .outline-element {
-            display: none; /* Убираем контур */
-        }
-
-        .bottom-nav .nav-item.active .solid-element {
-            display: block; /* Показываем черную закрашенную подложку */
             color: #262626;
         }
 
-        /* Внутренние полоски и элементы становятся белыми на черном фоне */
+        .bottom-nav .nav-item.active .solid-element {
+            display: block; 
+            color: #262626;
+        }
+
         .bottom-nav .nav-item.active line {
-            stroke: #ffffff !important;
+            stroke: #fcfcfc !important;
         }
 
-        /* Для Вакансий ромб внутри черного квадрата становится белым */
         .bottom-nav .nav-item.active .diamond {
-            fill: #ffffff !important;
+            fill: #f4f2f2 !important;
         }
 
-        /* Для Сервисов квадратики становятся сплошными черными */
         .bottom-nav .nav-item.active [class*="box-"] {
             fill: #262626;
+            stroke: #262626;
         }
         .container img {
-            width: 100%;
-            height: 650px;
+            width: 110%;
+            height: 690px;
+            margin-left: -20px;
         }
     </style>
 </head>
 <body>
-    <div class="pyst"></div>
+    
     <div class="container">
-        <img src="vak.jpg" alt="">
+        <img src="vak1.jpg" alt="">
     </div>
     <nav class="bottom-nav">
-    <!-- Кнопка 1: Резерв ID -->
         <a href="app.html" class="nav-item" data-tab="reserve">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
-                <!-- Внешний контур документа -->
-                <rect class="outline-element" x="5" y="3" width="14" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
-                <rect class="solid-element" x="5" y="3" width="14" height="18" rx="1" fill="currentColor"/>
-                <!-- Линии внутри -->
-                <line class="line-element" x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <line class="line-element" x1="5" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <rect class="outline-element" x="5" y="3" width="16" height="20" rx="1" fill="none" stroke="currentColor" stroke-width="1.7"/>
+                <rect class="solid-element" x="5" y="3" width="16" height="20" rx="1" fill="currentColor"/>
+                <line class="line-element" x1="6" y1="14" x2="20" y2="14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <line class="line-element" x1="6" y1="18.5" x2="20" y2="18.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
             <span class="nav-text">Резерв ID</span>
         </a>
-
-        <!-- Кнопка 2: Сервіси -->
         <a href="serv.html" class="nav-item" data-tab="services">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
-                <!-- 4 квадратика -->
-                <rect class="box-1" x="4" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
-                <rect class="box-2" x="13" y="4" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
-                <rect class="box-3" x="4" y="13" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
-                <rect class="box-4" x="13" y="13" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-1" x="1.5" y="1.5" width="8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-2" x="13" y="1.5" width="8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-3" x="1.5" y="14" width="8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="box-4" x="13" y="14" width="8" height="9" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
             <span class="nav-text">Сервіси</span>
         </a>
-
-        <!-- Кнопка 3: Вакансії -->
         <a href="vak.html" class="nav-item active" data-tab="vacancies">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
-                <rect class="outline-element" x="5" y="3" width="14" height="18" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
-                <rect class="solid-element" x="5" y="3" width="14" height="18" rx="2" fill="currentColor"/>
-                <rect class="diamond" x="10" y="9" width="6" height="6" transform="rotate(45 12 11)" fill="currentColor"/>
+                <rect class="outline-element" x="5" y="3" width="16" height="20" rx="1" fill="none" stroke="currentColor" stroke-width="2"/>
+                <rect class="solid-element" x="5" y="3" width="16" height="20" rx="2" fill="currentColor"/>
+                <rect class="diamond" x="10.5" y="8.5" width="7" height="7" transform="rotate(45 12 11)" fill="currentColor"/>
             </svg>
             <span class="nav-text">Вакансії</span>
         </a>
-
-        <!-- Кнопка 4: Меню -->
         <a href="menu.html" class="nav-item" data-tab="menu">
             <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24">
-                <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <line x1="4" y1="17" x2="20" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="4" y1="7" x2="20" y2="7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="4" y1="13.5" x2="20" y2="13.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="4" y1="20" x2="20" y2="20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
             </svg>
             <span class="nav-text">Меню</span>
         </a>
