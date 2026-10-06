@@ -571,7 +571,8 @@
             
         }
         .sheet2 {
-            overflow-y: auto; /* Включает вертикальную прокрутку */
+            overflow-y: auto;
+            overflow-x: hidden;/* Включает вертикальную прокрутку */
             -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
             padding: 0 24px;
             flex-grow: 1;
@@ -749,6 +750,8 @@
         }
         /* Контейнер перспективы 3D */
         .rezd-card-container {
+            overflow-y: auto;
+            overflow-x: hidden;
             perspective: 1000px;
             width: 100%;
             margin-top: 16px;
