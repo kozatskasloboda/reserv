@@ -1209,7 +1209,122 @@
             // Помечаем, что сессия в этой вкладке активна
             sessionStorage.setItem("session_active", "true");
         });
+        const overlay = document.getElementById('actionModal');
+        const sheetModal = overlay.querySelector('.modal-sheet');
 
+        let startY = 0;
+        let currentY = 0;
+        let isDragging = false;
+
+        // Функция для открытия шторки
+        function openActionModal() {
+            overlay.classList.add('open');
+        }
+
+        // Функция для закрытия шторки
+        function closeActionModal() {
+            overlay.classList.remove('open');
+            sheetModal.style.transform = ''; // сбрасываем инлайн-стиль смещения
+        }
+
+        // 1. Закрытие по клику на затемненный фон (бекдроп) мимо шторки
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeActionModal();
+            }
+        });
+
+        // 2. Логика свайпа (перетаскивания) вниз
+        sheetModal.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startY = e.clientY;
+            sheetModal.style.transition = 'none'; // отключаем плавность анимации при движении за пальцем
+        });
+
+        window.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            currentY = e.clientY - startY;
+            
+            // Разрешаем тянуть только вниз (положительные значения)
+            if (currentY > 0) {
+                sheetModal.style.transform = `translateY(${currentY}px)`;
+            }
+        });
+
+        window.addEventListener('pointerup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            // Возвращаем CSS-анимацию обратно
+            sheetModal.style.transition = 'transform 0.3s cubic-bezier(0.1, 1, 0.1, 1)';
+            
+            // Если потянули вниз больше чем на 80 пикселей — закрываем, иначе возвращаем на место
+            if (currentY > 80) {
+                closeActionModal();
+            } else {
+                sheetModal.style.transform = 'translateY(0)';
+            }
+            currentY = 0;
+        });
+
+
+
+        // --- 2. ЛОГИКА ДЛЯ ДОКУМЕНТА (Резерв ID - actmodal1) ---
+        const docOverlay = document.getElementById('actmodal1');
+        const docSheet = docOverlay ? docOverlay.querySelector('.modsh') : null;
+
+        let docStartY = 0;
+        let docCurrentY = 0;
+        let docIsDragging = false;
+
+        // Функции открытия/закрытия документа
+        function openFullModal() {
+            if (docOverlay) docOverlay.classList.add('open');
+        }
+
+        function closeFullModal() {
+            if (docOverlay) {
+                docOverlay.classList.remove('open');
+                if (docSheet) docSheet.style.transform = '';
+            }
+        }
+
+        if (docOverlay && docSheet) {
+            // Клик по фону документа
+            docOverlay.addEventListener('click', (e) => {
+                if (e.target === docOverlay) closeFullModal();
+            });
+
+            // Свайп документа вниз
+            docSheet.addEventListener('pointerdown', (e) => {
+                if (docSheet.scrollTop === 0 || e.target.closest('.sheet-handle1') || e.target.closest('.rezd1')) {
+                    docIsDragging = true;
+                    docStartY = e.clientY;
+                    docSheet.style.transition = 'none';
+                }
+            });
+
+            window.addEventListener('pointermove', (e) => {
+                if (!docIsDragging) return;
+                docCurrentY = e.clientY - docStartY;
+                if (docCurrentY > 0) {
+                    docSheet.style.transform = `translateY(${docCurrentY}px)`;
+                }
+            });
+
+            window.addEventListener('pointerup', () => {
+                if (!docIsDragging) return;
+                docIsDragging = false;
+                docSheet.style.transition = 'transform 0.3s cubic-bezier(0.1, 1, 0.1, 1)';
+                
+                if (docCurrentY > 120) {
+                    closeFullModal();
+                } else {
+                    docSheet.style.transform = 'translateY(0)';
+                }
+                docCurrentY = 0;
+            });
+        }
         
         initMarquee();
            
