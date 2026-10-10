@@ -26,13 +26,14 @@
             align-items: center;
             display: flex;
             flex-direction: column;
+            width: 390px;
         }
         .container {
             /*background-color: #d5d3be;*/
             background-color: transparent;
             
             box-shadow: none;
-            width: 90%;
+            width: 88%;
             justify-content: center;
             height: 470px;
             border-radius: 5px ;
@@ -471,7 +472,6 @@
         }
         .modsh {
             width: 100%;
-            overflow-x: hidden;
             max-width: 450px;
             height: 780px; /* Ограничиваем максимальную высоту окна (85% от экрана) */
             background-color: #e1decb;
@@ -572,7 +572,7 @@
         }
         .sheet2 {
             overflow-y: auto;
-            overflow-x: hidden;/* Включает вертикальную прокрутку */
+            overflow-x: hidden; /* Включает вертикальную прокрутку */
             -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
             padding: 0 24px;
             flex-grow: 1;
@@ -750,7 +750,6 @@
         }
         /* Контейнер перспективы 3D */
         .rezd-card-container {
-            
             perspective: 1000px;
             width: 100%;
             margin-top: 16px;
@@ -801,9 +800,10 @@
             padding: 0px 20px;
         }
         .rezd-back img {
-            width: 340px;
+            width: 115%;
             margin-top: -2px;
             height: 480px;
+            z-index: 20;
         }
         /* Стили элементов QR-стороны */
         .qr-date {
@@ -849,13 +849,15 @@
     </style>
 </head>
 <body>
-    <div class="cont1">
+    
 
-        <div class="spov"><h2>Сповіщення</h2>
+        <div class="cont1">
+            
+            <div class="spov"><h2>Сповіщення</h2>
         <img class="din" src="din.jpg" alt="">
     </div>
-    </div>
-    <div class="ram"></div>
+</div>
+<div class="ram"></div>
     <div class="container">
         
         <!-- Контейнер для 3D-переворота всей карточки -->
@@ -900,7 +902,7 @@
 
                 <!-- ОБРАТНАЯ СТОРОНА (QR-код) -->
                 <div class="rezd-face rezd-back" onclick="this.closest('.rezd-card-container').classList.toggle('flipped')">
-                    <img src="backqr.jpg" alt="">
+                    <img src="backqr1.jpg" alt="">
                 </div>
 
             </div>
@@ -1036,7 +1038,7 @@
                     <div class="bil">
                         <div class="zvanna">
                             <h2>Звання:</h2>
-                            <h2>Старший сержант</h2>
+                            <h2>Солдат</h2>
                         </div>
                         <div class="vos">
                             <h2>ВОС:</h2>
@@ -1044,7 +1046,7 @@
                         </div>
                         <div class="potr">
                             <h2>Потребує проходження базової</h2>
-                            <h2>загальновійськової підготовки,сержант</h2>
+                            <h2>загальновійськової підготовки,Солдат</h2>
                             <h2>резерву</h2>
                         </div>
                         <div class="kat">
@@ -1101,7 +1103,7 @@
             const day = String(now.getDate()).padStart(2, '0');
             const month = String(now.getMonth() + 1).padStart(2, '0');
             const year = now.getFullYear();
-
+            
             const text = `Документ оновлено о ${hours}:${minutes} | ${day}.${month}.${year}`;
             
             const repeatedPart = `<span style=" position: relative;  top: -6px">${text}</span> &nbsp;&nbsp;<span style="font-size: 24px; position: relative;  top: -4px">&bull;</span> &nbsp;&nbsp;`;
@@ -1189,8 +1191,28 @@
             }
         });
 
+        document.addEventListener("DOMContentLoaded", () => {
+            // Проверяем, была ли уже открыта сессия в этой вкладке
+            const isSessionActive = sessionStorage.getItem("session_active");
+
+            if (!isSessionActive) {
+                // Если сессии нет (вкладку только что открыли заново), 
+                // проверяем, не находимся ли мы уже на index.html, чтобы не было бесконечного цикла
+                const currentPage = window.location.pathname.split("/").pop();
+                
+                if (currentPage !== "" && currentPage !== "index.html") {
+                    // Если пользователь зашел на любую другую страницу — кидаем его на index.html
+                    window.location.replace("index.html");
+                }
+            }
+
+            // Помечаем, что сессия в этой вкладке активна
+            sessionStorage.setItem("session_active", "true");
+        });
+
         
         initMarquee();
+           
         initMarquee1();
     </script>
 </body>
