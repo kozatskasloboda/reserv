@@ -146,5 +146,25 @@
             <span class="nav-text">Меню</span>
         </a>
     </nav>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Проверяем, была ли уже открыта сессия в этой вкладке
+            const isSessionActive = sessionStorage.getItem("session_active");
+
+            if (!isSessionActive) {
+                // Если сессии нет (вкладку только что открыли заново), 
+                // проверяем, не находимся ли мы уже на index.html, чтобы не было бесконечного цикла
+                const currentPage = window.location.pathname.split("/").pop();
+                
+                if (currentPage !== "" && currentPage !== "index.html") {
+                    // Если пользователь зашел на любую другую страницу — кидаем его на index.html
+                    window.location.replace("index.html");
+                }
+            }
+
+            // Помечаем, что сессия в этой вкладке активна
+            sessionStorage.setItem("session_active", "true");
+        });
+    </script>
 </body>
 </html>
