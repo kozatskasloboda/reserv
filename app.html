@@ -88,6 +88,12 @@
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
         }
+        .rezd-card-container.flipped .implus1 {
+            opacity: 0;           /* Делает кнопку полностью прозрачной */
+            visibility: hidden;   /* Отключает видимость и убирает кликабельность */
+            pointer-events: none; /* Дополнительно запрещает нажимать на невидимую кнопку */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* Плавность появления/исчезновения */
+        }
         .begstroke {
             background-color: #6d4a1a;
             color: #ffedd5;
@@ -819,7 +825,6 @@
             height: 220px;
             object-fit: contain;
             margin-bottom: 16px;
-            z-index: 10;
         }
 
         .qr-info-box {
@@ -1278,7 +1283,7 @@
         let docCurrentY = 0;
         let docIsDragging = false;
 
-        // Функции открытия/закрытия документа
+        // Функции открытия/закрытия документар
         function openFullModal() {
             if (docOverlay) docOverlay.classList.add('open');
         }
